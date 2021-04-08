@@ -1,0 +1,25 @@
+textarea {
+	resize: none;
+	height: 100px;
+	margin-bottom: 20px;
+}
+
+.wrap {
+	max-width: 600px;
+	margin: 20px auto;
+}
+
+.card {
+	margin: 20px 0;
+}
+
+.edit-btn {
+	position: absolute;
+	right: -50px;
+	top: 0;
+	opacity: 0;
+}
+
+.card:hover .edit-btn {
+	opacity: 1;
+}
