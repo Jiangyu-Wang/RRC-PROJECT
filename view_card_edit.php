@@ -28,7 +28,9 @@ $card = $HSDB->getCardById($id)[0];
                 <label for="title" class="form-label">Hero Class</label>
                 <input type="text" class="form-control" id="heroclass" name="heroclass" value="<?= $card['heroclass'] ?>">
                 <label for="title" class="form-label">Card Img</label>
-                <input type="text" class="form-control" id="heroclass" name="img" value="<?= $card['img'] ?>">
+                
+                <input type="file" class="form-control" id="img" name="img">
+                
                 <label for="title" class="form-label">Card Rarity</label>
                 <input type="text" class="form-control" id="rarity" name="rarity" value="<?= $card['rarity'] ?>">
                 <input type="text" name="id" value="<?= $card['id'] ?>" style="display: none;">
