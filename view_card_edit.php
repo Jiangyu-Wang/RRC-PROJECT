@@ -19,7 +19,7 @@ $card = $HSDB->getCardById($id)[0];
 <body>
     <div class="wrap">
         <img src="imgs/<?= $card['img'] ?>">
-        <form class="row g-3" method="POST" action="./control_card_update.php">
+        <form class="row g-3" method="POST" action="./control_card_update.php" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Card Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="<?= $card['name'] ?>">
