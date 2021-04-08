@@ -1,6 +1,5 @@
 <?php
 
-require './lib/userAuthenticate.php';
 $HSDB = require './lib/connect.php';
 
 $heroClass = filter_input(INPUT_GET, 'HeroClass');

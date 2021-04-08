@@ -13,7 +13,7 @@ require './lib/authenticate.php';
 </head>
 <body>
     <div class="wrap">
-        <form class="row g-3" method="POST" action="./control_card_add.php">
+        <form class="row g-3" method="POST" action="./control_card_add.php" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Card Name</label>
                 <input type="text" class="form-control" id="name" name="name">
@@ -22,7 +22,10 @@ require './lib/authenticate.php';
                 <label for="title" class="form-label">Hero Class</label>
                 <input type="text" class="form-control" id="heroclass" name="heroclass">
                 <label for="title" class="form-label">Card Img</label>
-                <input type="text" class="form-control" id="img" name="img">
+
+                <input type="file" class="form-control" id="img" name="img">
+                <!-- <input type="text" class="form-control" id="img" name="img"> -->
+                
                 <label for="title" class="form-label">Card Rarity</label>
                 <input type="text" class="form-control" id="rarity" name="rarity">
                 <button type="submit" class="btn btn-primary btn-sm">Submit</button>
