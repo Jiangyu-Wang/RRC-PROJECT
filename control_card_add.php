@@ -24,6 +24,7 @@ if ($file_type=='image/jpeg'||$file_type=='image/png'||$file_type=='image/gif') 
 
 } else {
     echo "PLEASE UPLOAD AN IMAGE FILE.";
+    exit();
 }
 
 $name = filter_input(INPUT_POST, 'name');
