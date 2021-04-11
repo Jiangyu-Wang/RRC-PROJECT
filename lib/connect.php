@@ -43,15 +43,23 @@ Class HSDB {
     return $result;
   }
 
-  public function getCardsByClass($classId, $sortBy) {
+  public function getCardsByClass($classId, $sortBy = null, $keyWords = "") {
     $sql = 'SELECT * FROM cards ';
 
+    if ($classId != null || $keyWords != "") {
+      $sql = $sql.'WHERE';
+    }
+
     if ($classId != null) {
-      $sql = $sql.'WHERE heroclass ='.$classId;
+      $sql = $sql.' heroclass ='.$classId;
+    }
+
+    if ($keyWords != "") {
+      $sql = $sql." name LIKE '%".$keyWords."%'";
     }
 
     if ($sortBy != null) {
-      $sql = $sql.'ORDER BY '.$sortBy.' ASC';
+      $sql = $sql.' ORDER BY '.$sortBy.' ASC';
     }
 
     $cards = [];
