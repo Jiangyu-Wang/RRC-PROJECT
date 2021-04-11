@@ -21,18 +21,25 @@ if ($file_type=='image/jpeg'||$file_type=='image/png'||$file_type=='image/gif') 
     $resize_image->resizeToWidth(300);
     $resize_image->save($medium_path);
 
-    echo "UPLOADED SUCCESSFULLY.";
-
 } else {
     echo "PLEASE UPLOAD AN IMAGE FILE.";
     exit();
 }
 
-$name = filter_input(INPUT_POST, 'name');
-$description = filter_input(INPUT_POST, 'description');
-$heroclass = filter_input(INPUT_POST, 'heroclass');
+$heroclassOptions = array('options'=>array('default'=>0, 'min_range'=>1, 'max_range'=>10));
+$rarityOptions = array('options'=>array('default'=>0, 'min_range'=>1, 'max_range'=>5));
+
+$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+$heroclass = filter_input(INPUT_POST, 'heroclass', FILTER_VALIDATE_INT, $heroclassOptions);
 $imgName = $_FILES['img']['name'];
-$rarity = filter_input(INPUT_POST, 'rarity');
+$rarity = filter_input(INPUT_POST, 'rarity', FILTER_VALIDATE_INT, $rarityOptions);
+
+if ($heroclass == 0 || $rarity == 0) {
+    echo "PLEASE USE A CORRECT HEROCLASS OR RARITY.";
+    exit();
+}
+
 $HSDB -> newCard($name, $description, $heroclass, $imgName, $rarity);
 
 header('Location: ./view_forged_in_the_barrens.php');

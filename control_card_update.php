@@ -28,12 +28,22 @@ if ($file_type=='image/jpeg'||$file_type=='image/png'||$file_type=='image/gif') 
     exit();
 }
 
-$id = filter_input(INPUT_POST, 'id');
-$name = filter_input(INPUT_POST, 'name');
-$description = filter_input(INPUT_POST, 'description');
-$heroclass = filter_input(INPUT_POST, 'heroclass');
+$idOptions = array('options'=>array('default'=>0, 'min_range'=>1));
+$heroclassOptions = array('options'=>array('default'=>0, 'min_range'=>1, 'max_range'=>10));
+$rarityOptions = array('options'=>array('default'=>0, 'min_range'=>1, 'max_range'=>5));
+
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT, $idOptions);
+$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+$heroclass = filter_input(INPUT_POST, 'heroclass', FILTER_VALIDATE_INT, $heroclassOptions);
 $imgName = $_FILES['img']['name'];
-$rarity = filter_input(INPUT_POST, 'rarity');
+$rarity = filter_input(INPUT_POST, 'rarity', FILTER_VALIDATE_INT, $rarityOptions);
+
+if ($id == 0 || $heroclass == 0 || $rarity == 0) {
+    echo "PLEASE USE A CORRECT HEROCLASS OR RARITY OR ID.";
+    exit();
+}
+
 $HSDB -> updateCard($id, $name, $description, $heroclass, $imgName, $rarity);
 
 header('Location: ./view_forged_in_the_barrens.php');
