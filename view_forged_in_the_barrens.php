@@ -2,8 +2,8 @@
 
 $HSDB = require './lib/connect.php';
 
-$heroClass = filter_input(INPUT_GET, 'HeroClass');
-$sortBy = filter_input(INPUT_GET, 'SortBy');
+$heroClass = filter_input(INPUT_GET, 'HeroClass', FILTER_VALIDATE_INT);
+$sortBy = filter_input(INPUT_GET, 'SortBy', FILTER_SANITIZE_STRING);
 
 $cards = $HSDB->getCardsByClass($heroClass, $sortBy);
 $heroClasses = $HSDB->getClasses();
